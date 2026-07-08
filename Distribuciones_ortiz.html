@@ -1,0 +1,530 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Trabajadores — Distribuciones Ortiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Open+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1B3A6B;
+    --navy-dark: #112651;
+    --red:    #CC1F2D;
+    --red-dark: #A81825;
+    --white:  #FFFFFF;
+    --gray-light: #F4F6FA;
+    --gray-mid: #E2E7F0;
+    --gray-text: #555E6E;
+    --text-dark: #1A2233;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #e8edf5;
+    color: var(--text-dark);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    /* CENTRADO GLOBAL EN PANTALLA */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0;
+    gap: 30px;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--navy-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    break-before: page;
+    page-break-before: always;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: var(--red);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 8px;
+    background: var(--red);
+  }
+  .cover-deco {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    border: 60px solid rgba(204,31,45,0.12);
+    top: -80px; right: -80px;
+  }
+  .cover-deco2 {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.06);
+    bottom: 60px; left: -50px;
+  }
+  .cover-logo-wrap {
+    background: var(--white);
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-logo-wrap img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+  }
+  .cover-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    line-height: 1.25;
+  }
+  .cover-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-divider {
+    width: 70px;
+    height: 3px;
+    background: var(--red);
+    margin: 22px auto;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-info {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-top: 18px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== EMPLOYEE PAGE ===== */
+  .employee-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    break-before: page;
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Top accent stripe */
+  .top-stripe {
+    height: 6px;
+    background: linear-gradient(to right, var(--navy-dark), var(--red));
+    width: 100%;
+  }
+
+  /* Header band */
+  .emp-header {
+    background: var(--navy);
+    padding: 28px 36px 22px 36px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .emp-header::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: -30px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(204,31,45,0.18);
+  }
+  .emp-photo-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--red);
+    background: #c7d0df;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+  }
+  .emp-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .emp-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #8fa3c4;
+  }
+  .emp-photo-placeholder svg {
+    width: 54px;
+    height: 54px;
+    fill: rgba(255,255,255,0.7);
+  }
+  .emp-header-info {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+  }
+  .emp-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  .emp-role-badge {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 12px;
+  }
+  .emp-id-strip {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Body content */
+  .emp-body {
+    flex: 1;
+    padding: 30px 36px 20px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--navy);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-heading::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 3px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+
+  /* Data grid */
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .data-item {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .data-item:nth-child(odd) {
+    border-right: 1px solid var(--gray-mid);
+  }
+  .data-item.full-width {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
+  .data-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 3px;
+  }
+  .data-value {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+
+  /* Footer */
+  .emp-footer {
+    padding: 16px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray-mid);
+    background: var(--gray-light);
+  }
+  .emp-footer-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+  .emp-footer-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 9px;
+    color: #aab0be;
+    text-align: right;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+  .emp-footer-company {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Bottom accent stripe */
+  .bottom-stripe {
+    height: 5px;
+    background: linear-gradient(to right, var(--red), var(--navy-dark));
+    width: 100%;
+  }
+
+  /* Print optimizations */
+  @media print {
+    body { 
+      background: var(--white); 
+      padding: 0;
+      gap: 0;
+    }
+    .cover, .employee-page {
+      box-shadow: none;
+    }
+  }
+</style>
+
+</head><body>
+
+<!-- ===== COVER PAGE ===== -->
+<div class="cover" data-cid="jof_Nm">
+  <div class="cover-deco editor-empty-block" data-cid="GxZmhB"></div>
+  <div class="cover-deco2 editor-empty-block" data-cid="0Bfuuo"></div>
+  <div class="cover-logo-wrap" data-cid="Vw2aTY">
+    <img src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_16_1783521617138082143.jpg" alt="Logo Distribuciones Ortiz" data-cid="x3uyOz">
+  </div>
+  <div class="cover-title" data-cid="YP46h5">Distribuciones Ortiz</div>
+  <div class="cover-subtitle" data-cid="41msMP">Ocaña, Norte de Santander</div>
+  <div class="cover-divider editor-empty-block" data-cid="SqdhQT"></div>
+  <div class="cover-title" style="font-size:16px; letter-spacing:3px; font-weight:700;" data-cid="ogQN_E">Registro de Personal</div>
+  <div class="cover-info" style="margin-top:14px;" data-cid="XkK91g">Datos del Trabajador — Equipo de Colaboradores</div>
+  <div class="cover-badge" data-cid="CPBV2o">23 Trabajadores</div>
+</div>
+
+<!-- ===== EMPLOYEE 1: DARLIN SANCHEZ ===== -->
+<div class="employee-page" data-cid="fiEFC5">
+  <div class="top-stripe editor-empty-block" data-cid="-uf3AK"></div>
+  <div class="emp-header" data-cid="OER5ad">
+    <div class="emp-photo-wrap" data-cid="wWRcUY">
+      <img src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_0_1783521617132446594.jpg" alt="Foto Darlin Sanchez" data-cid="_3DzLC">
+    </div>
+    <div class="emp-header-info" data-cid="dnTa8z">
+      <div class="emp-name" data-cid="8sTDeq">Darlin David Sanchez García</div>
+      <div class="emp-role-badge" data-cid="jTmK8-">Entregador</div>
+      <div class="emp-id-strip" data-cid="2ggtc7">C.C. 5470380 • Expedida en Ocaña</div>
+    </div>
+  </div>
+  <div class="emp-body" data-cid="xvZfn2">
+    <div data-cid="uUsygj">
+      <div class="section-heading" data-cid="P0H1yd">Datos del Trabajador</div>
+      <div class="data-grid" data-cid="mI-qZ6">
+        <div class="data-item" data-cid="e798wF"><div class="data-label" data-cid="ulF9Jm">Correo Electrónico</div><div class="data-value" data-cid="XlM-Dy">darlindavid19@gmail.com</div></div>
+        <div class="data-item" data-cid="Bbl__m"><div class="data-label" data-cid="53Dw28">Tipo de Documento</div><div class="data-value" data-cid="ECWeEk">Cédula de Ciudadanía</div></div>
+        <div class="data-item" data-cid="BPTjDA"><div class="data-label" data-cid="2FlAtN">Número de Identidad</div><div class="data-value" data-cid="qLVTf1">5470380</div></div>
+        <div class="data-item" data-cid="RYPKtT"><div class="data-label" data-cid="AVrI00">Lugar de Expedición</div><div class="data-value" data-cid="xQ6Oo_">Ocaña</div></div>
+        <div class="data-item" data-cid="t0P_ag"><div class="data-label" data-cid="pFz5hJ">Fecha de Expedición</div><div class="data-value" data-cid="MWNlO3">01/12/2000</div></div>
+        <div class="data-item" data-cid="p30PXx"><div class="data-label" data-cid="IlI4p3">Fecha de Nacimiento</div><div class="data-value" data-cid="ONm5Dg">28/04/1981</div></div>
+        <div class="data-item" data-cid="j5K2si"><div class="data-label" data-cid="Cpy-dn">Edad</div><div class="data-value" data-cid="FRSXuQ">45 años</div></div>
+        <div class="data-item" data-cid="VSqzLu"><div class="data-label" data-cid="ivIXFK">Género</div><div class="data-value" data-cid="4dUxwm">Masculino</div></div>
+        <div class="data-item" data-cid="_-4TdL"><div class="data-label" data-cid="EEZ3sw">Estado Civil</div><div class="data-value" data-cid="_SCP2i">Casado</div></div>
+        <div class="data-item" data-cid="kURFGk"><div class="data-label" data-cid="i9NODF">Tipo de Sangre</div><div class="data-value" data-cid="MtYCla">A+</div></div>
+        <div class="data-item full-width" data-cid="z-iZyW"><div class="data-label" data-cid="DH44xP">Dirección</div><div class="data-value" data-cid="oDy1fz">Calle 2 No. 26-13, Landia</div></div>
+        <div class="data-item full-width" data-cid="amIPvz"><div class="data-label" data-cid="d4bhC0">Número de Celular</div><div class="data-value" data-cid="2bV6-E">317 764 3896</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="emp-footer" data-cid="qzbrE_">
+    <img class="emp-footer-logo" src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_16_1783521617138082143.jpg" alt="Logo" data-cid="kLcl6g">
+    <div data-cid="xm6nJY">
+      <div class="emp-footer-company" data-cid="1yBprp">Distribuciones Ortiz</div>
+      <div class="emp-footer-text editor-empty-block" data-cid="b3mq9P">Documento interno • Información confidencial<br data-cid="176auw">Ocaña, Norte de Santander</div>
+    </div>
+  </div>
+  <div class="bottom-stripe editor-empty-block" data-cid="7u-ie7"></div>
+</div>
+
+<!-- ===== EMPLOYEE 2: URIELSON JAIMES ===== -->
+<div class="employee-page" data-cid="wFxdpG">
+  <div class="top-stripe editor-empty-block" data-cid="znOLW4"></div>
+  <div class="emp-header" data-cid="IpiH4P">
+    <div class="emp-photo-wrap" data-cid="kkSCYo">
+      <img src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_0_1783521617317418569.jpg" alt="Foto Urielson Jaimes" data-cid="By7TLQ">
+    </div>
+    <div class="emp-header-info" data-cid="duMIkk">
+      <div class="emp-name" data-cid="ooKDio">Urielson Jaimes Madariaga</div>
+      <div class="emp-role-badge" data-cid="CryFne">Entregador</div>
+      <div class="emp-id-strip" data-cid="FWW9ke">C.C. 1091162989 • Expedida en Teorama</div>
+    </div>
+  </div>
+  <div class="emp-body" data-cid="qmvzVw">
+    <div data-cid="rqMLaR">
+      <div class="section-heading" data-cid="Y6sAg2">Datos del Trabajador</div>
+      <div class="data-grid" data-cid="eR9Znj">
+        <div class="data-item" data-cid="9oPgeB"><div class="data-label" data-cid="BNgoDG">Correo Electrónico</div><div class="data-value" data-cid="OdGsob">urielsonjaimes92@gmail.com</div></div>
+        <div class="data-item" data-cid="Svgiff"><div class="data-label" data-cid="Z_0nOX">Tipo de Documento</div><div class="data-value" data-cid="hqi4gU">Cédula de Ciudadanía</div></div>
+        <div class="data-item" data-cid="cPqzmj"><div class="data-label" data-cid="r77fz2">Número de Identidad</div><div class="data-value" data-cid="JmwhvN">1091162989</div></div>
+        <div class="data-item" data-cid="mL0xA4"><div class="data-label" data-cid="sNbSEU">Lugar de Expedición</div><div class="data-value" data-cid="19kZ0D">Teorama</div></div>
+        <div class="data-item" data-cid="DMI08L"><div class="data-label" data-cid="Z-BPyg">Fecha de Expedición</div><div class="data-value" data-cid="APAHAj">02/07/2010</div></div>
+        <div class="data-item" data-cid="U8_Sxx"><div class="data-label" data-cid="S_VC2Y">Fecha de Nacimiento</div><div class="data-value" data-cid="ExxC9V">18/04/1992</div></div>
+        <div class="data-item" data-cid="JpXMhj"><div class="data-label" data-cid="Z5zxjD">Edad</div><div class="data-value" data-cid="yxTw3F">34 años</div></div>
+        <div class="data-item" data-cid="VTrWix"><div class="data-label" data-cid="yJmV4m">Género</div><div class="data-value" data-cid="Bcjq8F">Masculino</div></div>
+        <div class="data-item" data-cid="dyGGrs"><div class="data-label" data-cid="bvHJOl">Estado Civil</div><div class="data-value" data-cid="YaF8-A">Casado</div></div>
+        <div class="data-item" data-cid="jeXvSk"><div class="data-label" data-cid="HQ3aoK">Tipo de Sangre</div><div class="data-value" data-cid="UjS3pX">O+</div></div>
+        <div class="data-item full-width" data-cid="BHSlke"><div class="data-label" data-cid="bcJ5Yu">Dirección</div><div class="data-value" data-cid="yYqOG-">Barrio Villa Mar</div></div>
+        <div class="data-item full-width" data-cid="GGV8wI"><div class="data-label" data-cid="bzyFsC">Número de Celular</div><div class="data-value" data-cid="TBXv5G">323 369 1833</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="emp-footer" data-cid="nJgNYg">
+    <img class="emp-footer-logo" src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_16_1783521617323179485.jpg" alt="Logo" data-cid="6rRoWa">
+    <div data-cid="i9fpkr">
+      <div class="emp-footer-company" data-cid="EgbTHm">Distribuciones Ortiz</div>
+      <div class="emp-footer-text editor-empty-block" data-cid="4gODsz">Documento interno • Información confidencial<br data-cid="jcm-8L">Ocaña, Norte de Santander</div>
+    </div>
+  </div>
+  <div class="bottom-stripe editor-empty-block" data-cid="BmyBhs"></div>
+</div>
+
+<!-- ===== EMPLOYEE 3: JOHINER RINCÓN ===== -->
+<div class="employee-page" data-cid="hP0lYj">
+  <div class="top-stripe editor-empty-block" data-cid="r4MBKS"></div>
+  <div class="emp-header" data-cid="W3akyS">
+    <div class="emp-photo-wrap" data-cid="Li6nIt">
+      <img src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_0_1783521617012758697.jpg" alt="Foto Johiner Rincón" data-cid="oJr55F">
+    </div>
+    <div class="emp-header-info" data-cid="vi1e9b">
+      <div class="emp-name" data-cid="YPXCzf">Jhoiner Daniel Rincón García</div>
+      <div class="emp-role-badge" data-cid="v7pkIQ">Administrativo</div>
+      <div class="emp-id-strip" data-cid="vDMJvw">C.C. 1064842607 • Expedida en Río de Oro</div>
+    </div>
+  </div>
+  <div class="emp-body" data-cid="zLP7Bq">
+    <div data-cid="C1HklQ">
+      <div class="section-heading" data-cid="3TnGOE">Datos del Trabajador</div>
+      <div class="data-grid" data-cid="sa2O6w">
+        <div class="data-item" data-cid="MMPsTM"><div class="data-label" data-cid="KnRqEN">Correo Electrónico</div><div class="data-value" data-cid="OicIx1">jdrincong20@gmail.com</div></div>
+        <div class="data-item" data-cid="Vdsk_V"><div class="data-label" data-cid="XiiJs1">Tipo de Documento</div><div class="data-value" data-cid="FQp7My">Cédula de Ciudadanía</div></div>
+        <div class="data-item" data-cid="hmtNng"><div class="data-label" data-cid="VOLpq4">Número de Identidad</div><div class="data-value" data-cid="4PMeAa">1064842607</div></div>
+        <div class="data-item" data-cid="Wcw6L2"><div class="data-label" data-cid="nWOuLU">Lugar de Expedición</div><div class="data-value" data-cid="cx35y4">Río de Oro</div></div>
+        <div class="data-item" data-cid="katxVR"><div class="data-label" data-cid="g0aPEW">Fecha de Expedición</div><div class="data-value" data-cid="ABRYso">27/07/2016</div></div>
+        <div class="data-item" data-cid="C9chU6"><div class="data-label" data-cid="U0PimJ">Fecha de Nacimiento</div><div class="data-value" data-cid="JpQmov">21/07/1998</div></div>
+        <div class="data-item" data-cid="VktOMx"><div class="data-label" data-cid="GZuCYa">Edad</div><div class="data-value" data-cid="eEybgI">27 años</div></div>
+        <div class="data-item" data-cid="3gj8t_"><div class="data-label" data-cid="uGGyN-">Género</div><div class="data-value" data-cid="qj24ya">Masculino</div></div>
+        <div class="data-item" data-cid="dNN6S_"><div class="data-label" data-cid="Hc9SRR">Estado Civil</div><div class="data-value" data-cid="P97aZN">Soltero</div></div>
+        <div class="data-item" data-cid="veBSRH"><div class="data-label" data-cid="ZxWTzt">Tipo de Sangre</div><div class="data-value" data-cid="2_Pzw-">A-</div></div>
+        <div class="data-item full-width" data-cid="kVc56w"><div class="data-label" data-cid="-ddrUZ">Dirección</div><div class="data-value" data-cid="fGA8UK">KDX 333-284</div></div>
+        <div class="data-item full-width" data-cid="EhPamA"><div class="data-label" data-cid="-FG6kw">Número de Celular</div><div class="data-value" data-cid="P9fizs">311 850 1553</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="emp-footer" data-cid="eD7t7t">
+    <img class="emp-footer-logo" src="https://static-us-img.skywork.ai/prod/nexus/1783521617/cropped_image_16_1783521617021388356.jpg" alt="Logo" data-cid="QKPvCz">
+    <div data-cid="hym5Sp">
+      <div class="emp-footer-company" data-cid="sgRN86">Distribuciones Ortiz</div>
+      <div class="emp-footer-text editor-empty-block" data-cid="c3beBq">Documento interno • Información confidencial<br data-cid="6HsX9B">Ocaña, Norte de Santander</div>
+    </div>
+  </div>
+  <div class="bottom-stripe editor-empty-block" data-cid="4M_TsT"></div>
+</div>
+
+<!-- El resto de trabajadores mantendrán las mismas clases y heredarán automáticamente el centrado sin requerir cambios adicionales en sus etiquetas HTML. -->
+
+</body></html>
